@@ -21,7 +21,17 @@
 				"vue.volar",
 				"esbenp.prettier-vscode",
 				"dbaeumer.vscode-eslint"
-			]
+			],
+			"settings": {
+				"[typescript]": {
+					"editor.formatOnSave": true,
+					"editor.defaultFormatter": "esbenp.prettier-vscode"
+				},
+				"[vue]": {
+					"editor.formatOnSave": true,
+					"editor.defaultFormatter": "esbenp.prettier-vscode"
+				}
+			}
 		}
 	}
 	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
