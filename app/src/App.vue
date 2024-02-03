@@ -1,91 +1,45 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router';
-import HelloWorld from './components/HelloWorld.vue';
+import Hero from '@/components/Hero.vue';
+import BasicCard from '@/components/BasicCard.vue';
+import BasicCardWrapper from '@/components/BasicCardWrapper.vue';
 </script>
 
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div class="main-container">
+    <header>
+      <h1 class="title mt-1 ml-5">新着トピック</h1>
+    </header>
+    <main>
+      <Hero title="新着" subtitle="最新のトピック" />
+      <BasicCardWrapper>
+        <div class="column is-3">
+          <BasicCard
+            title="title"
+            body="body"
+            img="https://bulma.io/images/placeholders/1280x960.png"
+          />
+        </div>
+      </BasicCardWrapper>
+    </main>
+    <footer>footer</footer>
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
+.main-container {
+  display: grid;
+  grid-template-rows: 50px 1fr 30px;
+  min-height: 100vh;
   header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    background-color: var(--color-background);
+    .title {
+      color: var(--color-text-secondary);
+    }
   }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+  footer {
+    background-color: var(--color-background);
+    text-align: center;
+    color: var(--color-text-secondary);
   }
 }
 </style>
