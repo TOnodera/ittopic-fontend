@@ -1,8 +1,24 @@
 <template>
-  <div class="is-mobile is-full px-5 pt-0 is-hidden-desktop is-multiline">
+  <!-- pc -->
+  <div
+    class="is-desktop pl-1 pt-4 is-hidden-touch is-multiline columns wrapper"
+  >
     <slot></slot>
   </div>
-  <div class="is-desktop is-full pl-6 pt-0 is-hidden-touch is-multiline">
+  <!-- sp -->
+  <div
+    class="is-mobile pt-0 is-hidden-desktop is-multiline columns wrapper is-centered sp"
+  >
     <slot></slot>
   </div>
 </template>
+
+<style scoped>
+.sp {
+  margin: 0 auto;
+}
+.wrapper {
+  width: 90%;
+  margin-top: 1rem;
+}
+</style>

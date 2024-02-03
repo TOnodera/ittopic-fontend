@@ -1,24 +1,22 @@
 <script setup lang="ts">
-import Hero from '@/components/Hero.vue';
+import SiteHero from '@/components/SiteHero.vue';
 import BasicCard from '@/components/BasicCard.vue';
 import BasicCardWrapper from '@/components/BasicCardWrapper.vue';
+import img from '@/assets/img/pc.png';
+import SiteHeader from './components/SiteHeader.vue';
 </script>
 
 <template>
-  <div class="main-container">
-    <header>
-      <h1 class="title mt-1 ml-5">新着トピック</h1>
-    </header>
+  <div class="main-container container">
+    <SiteHeader title="ITニュースウォッチャ" :img="img" />
     <main>
-      <Hero title="新着" subtitle="最新のトピック" />
+      <SiteHero title="新着" subtitle="最新のトピック" />
       <BasicCardWrapper>
-        <div class="column is-3">
-          <BasicCard
-            title="title"
-            body="body"
-            img="https://bulma.io/images/placeholders/1280x960.png"
-          />
-        </div>
+        <BasicCard
+          title="title"
+          body="body"
+          img="https://bulma.io/images/placeholders/1280x960.png"
+        />
       </BasicCardWrapper>
     </main>
     <footer>footer</footer>
@@ -30,12 +28,6 @@ import BasicCardWrapper from '@/components/BasicCardWrapper.vue';
   display: grid;
   grid-template-rows: 50px 1fr 30px;
   min-height: 100vh;
-  header {
-    background-color: var(--color-background);
-    .title {
-      color: var(--color-text-secondary);
-    }
-  }
   footer {
     background-color: var(--color-background);
     text-align: center;
