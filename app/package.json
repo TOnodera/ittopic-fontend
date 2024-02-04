@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "@fontsource/dotgothic16": "^5.0.17",
+    "@types/axios": "^0.14.0",
+    "axios": "^1.6.7",
     "bulma": "^0.9.4",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"

@@ -1,23 +1,14 @@
 <script setup lang="ts">
-import SiteHero from '@/components/SiteHero.vue';
-import BasicCard from '@/components/BasicCard.vue';
-import BasicCardWrapper from '@/components/BasicCardWrapper.vue';
 import img from '@/assets/img/pc.png';
-import SiteHeader from './components/SiteHeader.vue';
+import SiteHeader from '@/components/SiteHeader.vue';
+import TopPage from '@/views/TopPage.vue';
 </script>
 
 <template>
   <div class="main-container container">
     <SiteHeader title="ITニュースウォッチャ" :img="img" />
     <main>
-      <SiteHero title="新着" subtitle="最新のトピック" />
-      <BasicCardWrapper>
-        <BasicCard
-          title="title"
-          body="body"
-          img="https://bulma.io/images/placeholders/1280x960.png"
-        />
-      </BasicCardWrapper>
+      <TopPage />
     </main>
     <footer>footer</footer>
   </div>
