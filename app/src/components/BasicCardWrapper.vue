@@ -1,7 +1,7 @@
 <template>
   <!-- pc -->
   <div
-    class="is-desktop pl-1 pt-4 is-hidden-touch is-multiline columns wrapper"
+    class="is-desktop pl-1 pt-4 is-hidden-touch is-multiline columns wrapper is-centered"
   >
     <slot></slot>
   </div>

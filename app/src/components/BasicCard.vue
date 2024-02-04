@@ -4,11 +4,12 @@ defineProps<{
   body: string;
   img: string;
 }>();
+defineEmits(['click']);
 </script>
 
 <template>
   <!-- sp -->
-  <div class="card column is-12 is-hidden-desktop sp">
+  <div class="card column is-12 is-hidden-desktop sp" @click="$emit('click')">
     <div class="card-image">
       <figure class="image">
         <img :src="img" :alt="title" />
@@ -23,7 +24,7 @@ defineProps<{
     </div>
   </div>
   <!-- pc-->
-  <div class="card column is-3 is-hidden-touch">
+  <div class="card column is-3 is-hidden-touch m-4 pc" @click="$emit('click')">
     <div class="card-image">
       <figure class="image">
         <img :src="img" :alt="title" />
@@ -42,6 +43,10 @@ defineProps<{
 .sp {
   width: 100%;
   margin: 0 auto;
+  cursor: pointer;
+}
+.pc {
+  cursor: pointer;
 }
 .color {
   color: var(--color-text-primary);
