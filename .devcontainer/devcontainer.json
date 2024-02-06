@@ -20,7 +20,8 @@
 			"extensions": [
 				"vue.volar",
 				"esbenp.prettier-vscode",
-				"dbaeumer.vscode-eslint"
+				"dbaeumer.vscode-eslint",
+				"mhutchie.git-graph"
 			],
 			"settings": {
 				"[typescript]": {

@@ -41,13 +41,12 @@ COPY dev/.bashrc /home/node/.bashrc
 
 # reactアプリケーションをビルドしてnginxのドキュメントルートに配置
 USER root
-COPY ./frontend /home/node/frontend
-RUN rm -rf /usr/share/nginx/html/* \
-  cd /home/node/frontend \
-  npm ci \
-  npm run build \
-  mv /home/node/frontend/dist /usr/share/nginx/html \
-  chown -R nginx:nginx /usr/share/nginx/html
+RUN rm -rf /usr/share/nginx/html \
+  && cd /home/node/frontend/frontend \
+  && npm ci \
+  && npm run build \
+  && cp -r /home/node/frontend/frontend/dist /usr/share/nginx/html \
+  && chown -R nginx:nginx /usr/share/nginx/html
 
 # 非ルートユーザーで起動
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
