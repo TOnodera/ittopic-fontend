@@ -37,8 +37,7 @@ defineProps<{
 
 <style scoped lang="scss">
 .contents {
-  min-height: 4rem;
-  max-height: 10vh;
+  height: 10vh;
   background-color: $primary-color;
   margin: 0 auto;
   width: 100%;

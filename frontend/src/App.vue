@@ -2,15 +2,16 @@
 import img from '@/assets/img/pc.png';
 import SiteHeader from '@/components/SiteHeader.vue';
 import TopPage from '@/views/TopPage.vue';
+import SiteFooter from './components/SiteFooter.vue';
 </script>
 
 <template>
   <div class="main-container">
-    <SiteHeader title="ITニュースウォッチャ" :img="img" />
+    <SiteHeader title="ITトピックウォッチャ" :img="img" />
     <main>
       <TopPage />
     </main>
-    <footer>copyright t-dera 2024</footer>
+    <SiteFooter />
   </div>
 </template>
 
@@ -21,12 +22,6 @@ import TopPage from '@/views/TopPage.vue';
   max-width: 100vw;
   main {
     height: 85vh;
-  }
-  footer {
-    background-color: $primary-color;
-    text-align: center;
-    color: $text-secondary;
-    height: 10vh;
   }
 }
 </style>

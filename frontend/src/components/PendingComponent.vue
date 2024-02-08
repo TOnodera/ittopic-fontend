@@ -13,7 +13,7 @@ defineProps<{ isPending: boolean }>();
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .wrapper {
   position: absolute;
   top: 0;

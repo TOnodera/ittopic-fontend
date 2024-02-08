@@ -76,7 +76,7 @@ const openInTab = (url: string) => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .top {
   overflow-y: scroll;
   height: 90vh;

@@ -39,7 +39,7 @@ defineEmits(['click']);
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .sp {
   width: 100%;
   margin: 0 auto;

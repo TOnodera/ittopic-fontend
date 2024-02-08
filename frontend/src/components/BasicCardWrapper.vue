@@ -15,7 +15,7 @@
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .sp {
   margin: 0 auto;
 }
