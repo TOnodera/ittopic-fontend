@@ -20,10 +20,10 @@ const limit = 12;
  */
 const el = ref<HTMLElement | null>(null);
 const { arrivedState } = useScroll(el);
-//左右上下のそれぞれ端にいるかどうか、boolean
 const { bottom } = toRefs(arrivedState);
-// スクロールで最下部まで来た際の処理
-const onScrollBottomHandler = (isBottom: boolean) => {
+// スクロール時の処理
+const onScrollHandler = (isBottom: boolean) => {
+  // 最下部まできたらページ+1
   if (isBottom) {
     page.value += 1;
   }
@@ -33,9 +33,11 @@ const onScrollBottomHandler = (isBottom: boolean) => {
  * データ取得
  */
 watchEffect(async () => {
+  const skip = (page.value - 1) * limit;
+  const take = limit;
   // データフェッチ
   const { data } = await http.get<any, AxiosResponse<Article[]>>(
-    `/topics?page=${page.value}&limit=${limit}`
+    `/topics?skip=${skip}&take=${take}`
   );
   // 取得データがあればリアクティブオブジェクトを更新して再レンダリングさせる
   if (0 < data.length) {
@@ -48,9 +50,9 @@ const openInTab = (url: string) => {
 };
 </script>
 <template>
-  <div class="top" @scroll="onScrollBottomHandler(bottom)" ref="el">
+  <div class="top" @scroll="onScrollHandler(bottom)" ref="el">
     <SiteHero title="新着" subtitle="最新のトピック" />
-    <BasicCardWrapper @on-scroll-bottom="console.log('arrived at bottom.')">
+    <BasicCardWrapper>
       <BasicCard
         v-for="topic in topics"
         :title="topic.ogpTitle ? topic.ogpTitle : topic.title"
@@ -61,7 +63,7 @@ const openInTab = (url: string) => {
             : 'https://bulma.io/images/placeholders/1280x960.png'
         "
         :key="topic.id"
-        v-on:click="openInTab(topic.url)"
+        @click="openInTab(topic.url)"
       />
     </BasicCardWrapper>
   </div>
