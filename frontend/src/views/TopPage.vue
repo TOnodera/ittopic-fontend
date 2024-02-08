@@ -43,7 +43,7 @@ watchEffect(async () => {
   if (0 < data.length) {
     topics.value = topics.value ? [...topics.value, ...data] : data;
   }
-  await sleep();
+  await sleep(1000);
   isPending.value = false;
 });
 

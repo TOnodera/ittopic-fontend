@@ -17,15 +17,16 @@ import TopPage from '@/views/TopPage.vue';
 <style scoped>
 .main-container {
   display: grid;
-  grid-template-rows: 50px 1fr 30px;
+  grid-template-rows: 10vh 1fr 5vh;
+  max-width: 100vw;
   main {
-    height: 90vh;
+    height: 85vh;
   }
   footer {
     background-color: var(--color-background);
     text-align: center;
     color: var(--color-text-secondary);
-    max-height: 10vh;
+    height: 10vh;
   }
 }
 </style>
