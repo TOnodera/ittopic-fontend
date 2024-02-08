@@ -3,10 +3,10 @@ import SiteHero from '@/components/SiteHero.vue';
 import BasicCard from '@/components/BasicCard.vue';
 import BasicCardWrapper from '@/components/BasicCardWrapper.vue';
 import type { Article } from '@/shared/type';
-import { http } from '@/utils';
-import { ref, toRefs, watchEffect } from 'vue';
+import { http, sleep } from '@/utils';
+import { ref, watchEffect } from 'vue';
 import type { AxiosResponse } from 'axios';
-import { useScroll } from '@vueuse/core';
+import PendingComponent from '@/components/PendingComponent.vue';
 
 // 一覧に表示するニュースデータ
 const topics = ref<Article[]>();
@@ -14,17 +14,16 @@ const topics = ref<Article[]>();
 const page = ref<number>(1);
 // ページネーションごとのデータ取得数
 const limit = 12;
-
-/**
- *  最下部までスクロールしたかどうかを検出するための処理
- */
+// データの読み込み完了判定
+const isPending = ref<boolean>(true);
+// div.topのref
 const el = ref<HTMLElement | null>(null);
-const { arrivedState } = useScroll(el);
-const { bottom } = toRefs(arrivedState);
-// スクロール時の処理
-const onScrollHandler = (isBottom: boolean) => {
-  // 最下部まできたらページ+1
-  if (isBottom) {
+
+// 最下部までスクロールした時の処理
+const onScrollHandler = (target: HTMLElement) => {
+  const { scrollTop, offsetHeight, scrollHeight } = target;
+  const offsetTop = el.value?.offsetTop ? el.value?.offsetTop : 0;
+  if (Math.ceil(scrollTop + offsetHeight + offsetTop) >= scrollHeight) {
     page.value += 1;
   }
 };
@@ -35,6 +34,7 @@ const onScrollHandler = (isBottom: boolean) => {
 watchEffect(async () => {
   const skip = (page.value - 1) * limit;
   const take = limit;
+  isPending.value = true;
   // データフェッチ
   const { data } = await http.get<any, AxiosResponse<Article[]>>(
     `/topics?skip=${skip}&take=${take}`
@@ -43,6 +43,8 @@ watchEffect(async () => {
   if (0 < data.length) {
     topics.value = topics.value ? [...topics.value, ...data] : data;
   }
+  await sleep();
+  isPending.value = false;
 });
 
 const openInTab = (url: string) => {
@@ -50,7 +52,12 @@ const openInTab = (url: string) => {
 };
 </script>
 <template>
-  <div class="top" @scroll="onScrollHandler(bottom)" ref="el">
+  <div
+    class="top"
+    @scroll="(e) => onScrollHandler(e.target as HTMLElement)"
+    ref="el"
+  >
+    <PendingComponent :is-pending="isPending" />
     <SiteHero title="新着" subtitle="最新のトピック" />
     <BasicCardWrapper>
       <BasicCard
