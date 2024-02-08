@@ -14,9 +14,9 @@ defineProps<{
   </section>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .hero {
-  border-bottom: 1px dotted var(--color-text-primary);
+  border-bottom: 1px dotted $text-primary;
   .color {
     color: var(--color-text-primary) !important;
   }
