@@ -5,12 +5,12 @@ import TopPage from '@/views/TopPage.vue';
 </script>
 
 <template>
-  <div class="main-container container">
+  <div class="main-container">
     <SiteHeader title="ITニュースウォッチャ" :img="img" />
     <main>
       <TopPage />
     </main>
-    <footer>footer</footer>
+    <footer>copyright t-dera 2024</footer>
   </div>
 </template>
 
@@ -18,11 +18,14 @@ import TopPage from '@/views/TopPage.vue';
 .main-container {
   display: grid;
   grid-template-rows: 50px 1fr 30px;
-  min-height: 100vh;
+  main {
+    height: 90vh;
+  }
   footer {
     background-color: var(--color-background);
     text-align: center;
     color: var(--color-text-secondary);
+    max-height: 10vh;
   }
 }
 </style>

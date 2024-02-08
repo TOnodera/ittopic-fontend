@@ -25,7 +25,8 @@ defineProps<{
 
 <style scoped>
 header {
-  height: 50px;
+  min-height: 50px;
+  max-height: 10vh;
   background-color: var(--color-background);
   margin: 0 auto;
   width: 100%;

@@ -7,6 +7,10 @@
   color: var(--color-text-primary);
 }
 
+html {
+  overflow: hidden;
+}
+
 .columns{
   width: 100%;
 }
