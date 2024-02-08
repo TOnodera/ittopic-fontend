@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import SiteHero from '@/components/SiteHero.vue';
-import BasicCard from '@/components/BasicCard.vue';
-import BasicCardWrapper from '@/components/BasicCardWrapper.vue';
+import SiteHero from '@/components/atoms/SiteHero.vue';
+import BasicCard from '@/components/atoms/BasicCard.vue';
+import BasicCardWrapper from '@/components/atoms/BasicCardWrapper.vue';
 import type { Article } from '@/shared/type';
 import { http, sleep } from '@/utils';
 import { ref, watchEffect } from 'vue';
 import type { AxiosResponse } from 'axios';
-import PendingComponent from '@/components/PendingComponent.vue';
+import PendingComponent from '@/components/molecules/PendingComponent.vue';
 
 // 一覧に表示するニュースデータ
 const topics = ref<Article[]>();

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import img from '@/assets/img/pc.png';
-import SiteHeader from '@/components/SiteHeader.vue';
+import SiteHeader from '@/components/atoms/SiteHeader.vue';
 import TopPage from '@/views/TopPage.vue';
-import SiteFooter from './components/SiteFooter.vue';
+import SiteFooter from './components/atoms/SiteFooter.vue';
 </script>
 
 <template>

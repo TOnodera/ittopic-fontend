@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import PackMan from './PackMan.vue';
+import PackMan from '@/components/atoms/PackMan.vue';
 
 defineProps<{ isPending: boolean }>();
 </script>

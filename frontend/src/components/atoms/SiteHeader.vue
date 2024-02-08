@@ -8,13 +8,13 @@ defineProps<{
   <header>
     <!-- sp -->
     <div
-      class="contents is-mobile is-hidden-desktop columns content mt-1 is-centered is-align-item-center"
+      class="contents is-mobile is-hidden-desktop columns pt-1 is-centered is-align-item-center"
     >
       <div class="column is-12">
         <div class="columns is-mobile is-centered is-align-items-center">
-          <div class="column is-12 has-text-centered">
+          <div class="column is-12 has-text-centered pb-0">
             <img :src="img" :alt="title" class="logo" />
-            <span class="title pl-2 is-size-5">{{ title }} </span>
+            <span class="title pl-2 title">{{ title }} </span>
           </div>
         </div>
       </div>
@@ -36,19 +36,22 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
-.contents {
-  height: 10vh;
+header {
+  max-height: 10vh;
   background-color: $primary-color;
-  margin: 0 auto;
-  width: 100%;
-  .logo {
-    max-height: 40px;
-    vertical-align: middle;
-  }
-  .title {
-    color: $text-secondary;
-    word-break: keep-all;
-    vertical-align: middle;
+  .contents {
+    margin: 0 auto;
+    width: 100%;
+    .logo {
+      max-height: 40px;
+      vertical-align: middle;
+    }
+    .title {
+      color: $text-secondary;
+      word-break: keep-all;
+      vertical-align: middle;
+      font-size: 3.5vw;
+    }
   }
 }
 </style>
