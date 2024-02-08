@@ -23,11 +23,11 @@ defineProps<{
   </header>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 header {
   min-height: 50px;
   max-height: 10vh;
-  background-color: #00d1b2; 
+  background-color: var(--color-background);
   margin: 0 auto;
   width: 100%;
   .title {
