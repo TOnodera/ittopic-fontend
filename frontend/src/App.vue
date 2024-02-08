@@ -14,7 +14,7 @@ import TopPage from '@/views/TopPage.vue';
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .main-container {
   display: grid;
   grid-template-rows: 10vh 1fr 5vh;
@@ -23,9 +23,9 @@ import TopPage from '@/views/TopPage.vue';
     height: 85vh;
   }
   footer {
-    background-color: var(--color-background);
+    background-color: $primary-color;
     text-align: center;
-    color: var(--color-text-secondary);
+    color: $text-secondary;
     height: 10vh;
   }
 }

@@ -11,8 +11,8 @@
 </template>
 
 <style scoped lang="scss">
-$pacman_color: var(--color-background);
-$ball_color: #fff;
+$pacman_color: $primary-color;
+$ball_color: $text-secondary;
 .pacman-loader {
   display: inline-block;
   text-align: center;

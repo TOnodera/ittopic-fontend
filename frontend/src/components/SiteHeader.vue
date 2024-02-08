@@ -26,12 +26,12 @@ defineProps<{
 <style scoped lang="scss">
 header {
   min-height: 50px;
-  max-height: 10vh;
-  background-color: var(--color-background);
+  max-height: 5vh;
+  background-color: $primary-color;
   margin: 0 auto;
   width: 100%;
   .title {
-    color: var(--color-text-secondary);
+    color: $text-secondary;
   }
   .logo {
     img {
