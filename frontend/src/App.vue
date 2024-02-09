@@ -6,7 +6,7 @@ import MainContent from './components/molecules/MainContent.vue';
 </script>
 
 <template>
-  <v-app class="app-container">
+  <v-app class="app-container" ref="app">
     <SiteHeader title="ITトピック" />
     <MainContent>
       <TopPage />

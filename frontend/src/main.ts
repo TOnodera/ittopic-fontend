@@ -1,17 +1,17 @@
-import { aliases, mdi } from 'vuetify/iconsets/mdi';
-import { createApp } from 'vue';
-import { createVuetify } from 'vuetify';
-import App from './App.vue';
 import '@fontsource/dotgothic16';
 import '@fontsource/dotgothic16/japanese-400.css';
 import '@mdi/font/css/materialdesignicons.css';
 import 'vuetify/styles';
+import { aliases, mdi } from 'vuetify/iconsets/mdi';
+import { createApp } from 'vue';
+import { createVuetify } from 'vuetify';
+import App from '@/App.vue';
 
 const customLightTheme = {
   dark: false,
   colors: {
     background: '#FFFFFF',
-    surface: '#00d1b2',
+    surface: '#a9d9ec',
     'surface-bright': '#FFFFFF',
     'surface-light': '#EEEEEE',
     'surface-variant': '#424242',
@@ -24,7 +24,8 @@ const customLightTheme = {
     info: '#2196F3',
     success: '#4CAF50',
     warning: '#FB8C00',
-    'text-primary': '#222'
+    'text-primary': '#222',
+    'text-secondary': '#eee'
   },
   variables: {
     'border-color': '#000000',
