@@ -20,8 +20,13 @@ const isPending = ref<boolean>(true);
 const openInTab = (url: string) => {
   window.open(url);
 };
+// サーバー側にさらに取得できるデータがあるかチェック
+let isMoreData = true;
 // 最下部までスクロールした時の処理
 const onScrollListener = () => {
+  if (!isMoreData) {
+    return;
+  }
   const scrollTop = window.scrollY;
   const windowHeight = window.innerHeight;
   const fullHeight = document.body.scrollHeight;
@@ -42,7 +47,8 @@ watchEffect(async () => {
     `/topics?skip=${skip}&take=${take}`
   );
   // 取得データがあればリアクティブオブジェクトを更新して再レンダリングさせる
-  if (0 < data.length) {
+  isMoreData = 0 < data.length;
+  if (isMoreData) {
     topics.value = topics.value ? [...topics.value, ...data] : data;
   }
   await sleep(1000);
