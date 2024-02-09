@@ -6,22 +6,19 @@ import SiteFooter from './components/atoms/SiteFooter.vue';
 </script>
 
 <template>
-  <div class="main-container">
-    <SiteHeader title="ITトピックウォッチャ" :img="img" />
-    <main>
-      <TopPage />
-    </main>
-    <SiteFooter />
-  </div>
+  <v-app>
+    <v-icon icon="mdi-home" />
+    <v-container>
+      <v-app-bar :elevation="3">
+        <template v-slot:prepend>
+          <v-app-bar-nav-icon class="text-secondary"></v-app-bar-nav-icon>
+        </template>
+        <v-app-bar-title class="text-secondary"
+          >Application Bar</v-app-bar-title
+        >
+      </v-app-bar>
+    </v-container>
+  </v-app>
 </template>
 
-<style scoped lang="scss">
-.main-container {
-  display: grid;
-  grid-template-rows: 10vh 1fr 5vh;
-  max-width: 100vw;
-  main {
-    height: 85vh;
-  }
-}
-</style>
+<style scoped lang="scss"></style>
