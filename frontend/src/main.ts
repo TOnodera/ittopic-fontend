@@ -1,10 +1,11 @@
-import '@mdi/font/css/materialdesignicons.css';
 import { aliases, mdi } from 'vuetify/iconsets/mdi';
 import { createApp } from 'vue';
 import { createVuetify } from 'vuetify';
 import App from './App.vue';
 import '@fontsource/dotgothic16';
 import '@fontsource/dotgothic16/japanese-400.css';
+import '@mdi/font/css/materialdesignicons.css';
+import 'vuetify/styles';
 
 const customLightTheme = {
   dark: false,
