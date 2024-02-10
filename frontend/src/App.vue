@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import SiteHeader from '@/components/atoms/SiteHeader.vue';
 import SiteFooter from './components/atoms/SiteFooter.vue';
-import TopPage from '@/views/TopPage.vue';
 import MainContent from './components/molecules/MainContent.vue';
 </script>
 
@@ -9,7 +8,7 @@ import MainContent from './components/molecules/MainContent.vue';
   <v-app class="app-container" ref="app">
     <SiteHeader title="ITトピック" />
     <MainContent>
-      <TopPage />
+      <router-view></router-view>
     </MainContent>
     <SiteFooter />
   </v-app>

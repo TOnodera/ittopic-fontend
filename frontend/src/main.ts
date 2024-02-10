@@ -5,6 +5,7 @@ import 'vuetify/styles';
 import { aliases, mdi } from 'vuetify/iconsets/mdi';
 import { createApp } from 'vue';
 import { createVuetify } from 'vuetify';
+import router from './router';
 import App from '@/App.vue';
 
 const customLightTheme = {
@@ -62,4 +63,4 @@ const vuetify = createVuetify({
     }
   }
 });
-createApp(App).use(vuetify).mount('#app');
+createApp(App).use(router).use(vuetify).mount('#app');
