@@ -18,8 +18,8 @@ export interface Article {
   ogpTitle: string | null;
   ogpImage: string | null;
   ogpDescription: string | null;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 interface RegisteredCrawlerStats {
@@ -39,24 +39,24 @@ interface RegisteredCrawlerStats {
 
 interface RegisteredBatchHistory {
   id: number;
-  startAt: Date;
-  endAt: Date;
-  createdAt: Date;
-  updatedAt: Date;
+  startAt: string;
+  endAt: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 interface Site {
   id: number;
   name: string;
-  createdAt: Date;
-  updatedAt: Date;
+  name_ja: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 interface CrawlerStatsWithSite extends RegisteredCrawlerStats {
   Site: Site;
 }
 
-export interface AppHistories {
-  batch: RegisteredBatchHistory;
-  crawlerStats: CrawlerStatsWithSite[];
+export interface AppHistories extends RegisteredBatchHistory {
+  CrawlerStats: CrawlerStatsWithSite[];
 }

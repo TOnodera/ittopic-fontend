@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import img from '@/assets/img/pc.png';
 import { useIsNavigationOpenStore } from '@/stores/isNavigationOpen';
 defineProps<{ title: string }>();
 const store = useIsNavigationOpenStore();
@@ -12,6 +11,8 @@ const store = useIsNavigationOpenStore();
         @click="() => store.toggle()"
       ></v-app-bar-nav-icon>
     </template>
-    <v-app-bar-title class="text-secondary">{{ title }}</v-app-bar-title>
+    <v-app-bar-title class="text-secondary font-weight-bold text-h5">{{
+      title
+    }}</v-app-bar-title>
   </v-app-bar>
 </template>
