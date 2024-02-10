@@ -5,9 +5,11 @@ import 'vuetify/styles';
 import { aliases, mdi } from 'vuetify/iconsets/mdi';
 import { createApp } from 'vue';
 import { createVuetify } from 'vuetify';
+import { createPinia } from 'pinia';
 import router from './router';
 import App from '@/App.vue';
 
+// サイト全体の配色設定
 const customLightTheme = {
   dark: false,
   colors: {
@@ -47,7 +49,6 @@ const customLightTheme = {
     'theme-on-code': '#000000'
   }
 };
-
 const vuetify = createVuetify({
   icons: {
     defaultSet: 'mdi',
@@ -63,4 +64,9 @@ const vuetify = createVuetify({
     }
   }
 });
-createApp(App).use(router).use(vuetify).mount('#app');
+
+// 状態管理ツール
+const pinia = createPinia();
+
+// 起動
+createApp(App).use(router).use(pinia).use(vuetify).mount('#app');
