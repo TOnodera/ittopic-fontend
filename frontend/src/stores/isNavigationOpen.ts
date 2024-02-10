@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const useCounterStore = defineStore('isNavigationOpen', {
+export const useIsNavigationOpenStore = defineStore('isNavigationOpen', {
   state: () => {
     return { isNavigationOpen: false };
   },
