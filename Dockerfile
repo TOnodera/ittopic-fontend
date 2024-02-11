@@ -1,4 +1,4 @@
-FROM nginx:1.25-bookworm
+FROM ubuntu:latest 
 
 RUN apt-get update \
   && apt-get upgrade -y \
@@ -13,6 +13,7 @@ RUN apt-get update \
   git \
   vim \
   openssh-client \
+  nginx \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
@@ -47,10 +48,10 @@ RUN rm -rf /usr/share/nginx/html \
   && npm ci \
   && npm run build \
   && cp -r /home/node/frontend/frontend/dist /usr/share/nginx/html \
-  && chown -R nginx:nginx /usr/share/nginx/html
+  && chown -R www-data:www-data /usr/share/nginx/html
 
 # 非ルートユーザーで起動
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
-USER nginx
+USER www-data 
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
