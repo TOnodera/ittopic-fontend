@@ -35,13 +35,9 @@ const headers = [
 // ページネーション
 const page = ref<number>(1);
 // ページネーションごとのデータ取得数
-const limit = 12;
+const limit = 10;
 // データの読み込み完了判定
 const isPending = ref<boolean>(true);
-// リンククリック時の挙動
-const openInTab = (url: string) => {
-  window.open(url);
-};
 // サーバー側にさらに取得できるデータがあるかチェック
 let isMoreData = true;
 // 最下部までスクロールした時の処理
@@ -117,7 +113,6 @@ onUnmounted(() => {
                   :headers="headers"
                   :items="
                     history.CrawlerStats.map((val) => {
-                      console.log({ ...val, name_ja: val.Site.name_ja });
                       return { ...val, name_ja: val.Site.name_ja };
                     })
                   "

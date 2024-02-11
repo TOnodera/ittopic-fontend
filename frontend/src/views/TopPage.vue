@@ -9,7 +9,7 @@ import { onMounted } from 'vue';
 import { onUnmounted } from 'vue';
 
 // 一覧に表示するニュースデータ
-const topics = ref<Article[]>();
+const topics = ref<Article[]>([]);
 // ページネーション
 const page = ref<number>(1);
 // ページネーションごとのデータ取得数
@@ -49,7 +49,7 @@ watchEffect(async () => {
   // 取得データがあればリアクティブオブジェクトを更新して再レンダリングさせる
   isMoreData = 0 < data.length;
   if (isMoreData) {
-    topics.value = topics.value ? [...topics.value, ...data] : data;
+    topics.value = [...topics.value, ...data];
   }
   await sleep(1000);
   isPending.value = false;
