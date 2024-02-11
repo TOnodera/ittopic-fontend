@@ -1,0 +1,66 @@
+name: CI
+on:
+  push:
+    tags:
+      - "v*"
+jobs:
+  buid:
+    name: GitOps Workflow
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: タグを取得
+        run: echo "TAG_NAME=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: タグ表示
+        run: |
+          echo "${TAG_NAME}"
+
+      - name: イメージをビルド
+        run: |-
+          cd ./app
+          DOCKER_BUILDKIT=1 docker image build . -f Dockerfile --tag ${{ secrets.DH_USERNAME }}/ittopic-api:${{ env.TAG_NAME }}
+
+      - name: イメージの脆弱性診断
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: "${{ secrets.DH_USERNAME }}/ittopic-api:${{ env.TAG_NAME }}"
+          format: "table"
+          exit-code: "1"
+          ignore-unfixed: true
+          severity: "CRITICAL,HIGH"
+
+      - name: Docker Hubにログイン
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DH_USERNAME }}
+          password: ${{ secrets.DH_TOKEN }}
+
+      - name: Docker Hubにイメージをプッシュ
+        run: |-
+          docker image push ${{ secrets.DH_USERNAME }}/ittopic-api:${{ env.TAG_NAME }}
+
+      - name: conf-ittopic-crawlerにチェックアウト
+        uses: actions/checkout@v3
+        with:
+          repository: TOnodera/conf-ittopic-crawler
+          ssh-key: ${{ secrets.GH_SECRET_KEY }}
+
+      - name: バージョンを更新してプルリクエストを作成
+        run: |-
+          # バージョン更新
+          git config --global user.email "${{ secrets.EMAIL }}"
+          git config --global user.name "${{ secrets.GH_USERNAME }}"
+          git branch ci-robot/request-${{ env.TAG_NAME }}
+          git checkout ci-robot/request-${{ env.TAG_NAME }}
+          sed -i 's/api_image_tag: v[0-9]\+\.[0-9]\+\.[0-9]\+$/api_image_tag: ${{ env.TAG_NAME }}/g' values.yaml
+
+          # git push
+          git add values.yaml
+          git commit -m "バージョンが更新されました: ${{ env.TAG_NAME }}"
+          git push origin ci-robot/request-${{ env.TAG_NAME }}
+
+          # プルリクエストを作成
+          echo ${{ secrets.PERSONAL_ACCESS_TOKEN }} > token.txt
+          gh auth login --with-token < token.txt
+          gh pr create --title 'Update Tag ${{ env.TAG_NAME }}' --body "マージしてください。マージが完了するとArgoCDがCD処理を開始します。"
