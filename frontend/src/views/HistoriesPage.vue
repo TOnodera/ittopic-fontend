@@ -1,10 +1,13 @@
 <script lang="ts" setup>
 import type { AppHistories } from '@/shared/type';
-import { http } from '@/utils';
+import { http, sleep } from '@/utils';
 import type { AxiosResponse } from 'axios';
 import { ref } from 'vue';
 import { watchEffect } from 'vue';
 import { toDate, toTime } from '@/utils';
+import { onMounted } from 'vue';
+import { onUnmounted } from 'vue';
+import PendingComponent from '@/components/molecules/PendingComponent.vue';
 
 // テーブルヘッダー
 const headers = [
@@ -29,19 +32,60 @@ const headers = [
     value: 'crawlerRuntimeMillis'
   }
 ];
+// ページネーション
+const page = ref<number>(1);
+// ページネーションごとのデータ取得数
+const limit = 12;
+// データの読み込み完了判定
+const isPending = ref<boolean>(true);
+// リンククリック時の挙動
+const openInTab = (url: string) => {
+  window.open(url);
+};
+// サーバー側にさらに取得できるデータがあるかチェック
+let isMoreData = true;
+// 最下部までスクロールした時の処理
+const onScrollListener = () => {
+  if (!isMoreData) {
+    return;
+  }
+
+  const scrollTop = window.scrollY;
+  const windowHeight = window.innerHeight;
+  const fullHeight = document.body.scrollHeight;
+  if (Math.ceil(scrollTop + windowHeight) >= fullHeight) {
+    page.value += 1;
+  }
+};
 
 // 履歴データ
 const histories = ref<AppHistories[]>([]);
 
 watchEffect(async () => {
+  const skip = (page.value - 1) * limit;
+  const take = limit;
+  isPending.value = true;
   const { data } = await http.get<any, AxiosResponse<AppHistories[], any>>(
-    '/histories'
+    `/histories?skip=${skip}&take=${take}`
   );
-  histories.value = data;
+  isMoreData = 0 < data.length;
+  if (isMoreData) {
+    histories.value = [...histories.value, ...data];
+  }
+  await sleep(1000);
+  isPending.value = false;
+});
+
+onMounted(() => {
+  window.addEventListener('scroll', onScrollListener);
+});
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScrollListener);
 });
 </script>
 
 <template>
+  <PendingComponent :is-pending="isPending" />
   <v-container class="mt-12">
     <v-row>
       <v-col>
