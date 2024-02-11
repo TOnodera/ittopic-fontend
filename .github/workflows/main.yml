@@ -18,7 +18,6 @@ jobs:
 
       - name: イメージをビルド
         run: |-
-          cd ./frontend
           DOCKER_BUILDKIT=1 docker image build . -f Dockerfile --tag ${{ secrets.DH_USERNAME }}/ittopic-frontend:${{ env.TAG_NAME }}
 
       - name: イメージの脆弱性診断
