@@ -23,11 +23,14 @@ RUN sed -i -e 's/# \(ja_JP.UTF-8\)/\1/' /etc/locale.gen \
   && locale-gen
 
 # node, npm, npxを使えるようにする
-RUN wget https://nodejs.org/dist/v20.11.0/node-v20.11.0-linux-x64.tar.xz \
-    && tar xfv node-v20.11.0-linux-x64.tar.xz \
-    && mv node-v20.11.0-linux-x64/bin/node /usr/local/bin/node \
-    && ln -s /node-v20.11.0-linux-x64/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
-    && ln -s /node-v20.11.0-linux-x64/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
+# RUN wget https://nodejs.org/dist/v20.11.0/node-v20.11.0-linux-x64.tar.xz \
+#     && tar xfv node-v20.11.0-linux-x64.tar.xz \
+#     && mv node-v20.11.0-linux-x64/bin/node /usr/local/bin/node \
+#     && ln -s /node-v20.11.0-linux-x64/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
+#     && ln -s /node-v20.11.0-linux-x64/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
+
+RUN curl -fsSL https://deb.nodesource.com/setup_21.x | bash - \
+  && apt-get install -y nodejs
 
 # 開発用ユーザー設定
 ARG userid=1000
