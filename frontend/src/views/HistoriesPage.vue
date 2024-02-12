@@ -24,8 +24,8 @@ const headers = [
     value: 'requestsFailed'
   },
   {
-    title: 'Total Request Time (ms)',
-    value: 'crawlerRuntimeMillis'
+    title: 'Total Duration (ms)',
+    value: 'requestTotalDurationMillis'
   },
   {
     title: 'Crawler Runtime (ms)',
