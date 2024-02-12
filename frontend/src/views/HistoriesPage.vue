@@ -122,10 +122,11 @@ onUnmounted(() => {
                 <v-divider />
                 <v-container>
                   <v-row justify="end">
-                    <v-col cols=""
-                      ><span class="text-caption font-weight-bold"
+                    <v-col cols="12"
+                      ><span
+                        class="text-caption mr-2 font-weight-bold text-no-wrap"
                         >開始時刻 {{ toTime(history.startAt) }}</span
-                      ><span class="text-caption ml-2 font-weight-bold"
+                      ><span class="text-caption font-weight-bold text-no-wrap"
                         >終了時刻 {{ toTime(history.endAt) }}</span
                       ></v-col
                     >

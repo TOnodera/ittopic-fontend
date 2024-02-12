@@ -62,4 +62,4 @@ jobs:
           # プルリクエストを作成
           echo ${{ secrets.PERSONAL_ACCESS_TOKEN }} > token.txt
           gh auth login --with-token < token.txt
-          gh pr create --title 'Update Tag ${{ env.TAG_NAME }}' --body "マージしてください。マージが完了するとArgoCDがCD処理を開始します。"
+          gh pr create --title 'Update Tag ${{ env.TAG_NAME }}' --body "フロントエンドのバージョンが更新されました。マージが完了するとArgoCDがCD処理を開始します。"
