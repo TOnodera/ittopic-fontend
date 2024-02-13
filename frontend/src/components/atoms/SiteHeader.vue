@@ -11,8 +11,12 @@ const store = useIsNavigationOpenStore();
         @click="() => store.toggle()"
       ></v-app-bar-nav-icon>
     </template>
-    <v-app-bar-title class="text-secondary font-weight-bold text-h5">{{
-      title
-    }}</v-app-bar-title>
+    <v-app-bar-title
+      class="text-secondary font-weight-bold text-h5 cursor-pointer"
+    >
+      <router-link to="/" class="text-decoration-none text-secondary"
+        ><span>{{ title }}</span></router-link
+      >
+    </v-app-bar-title>
   </v-app-bar>
 </template>
