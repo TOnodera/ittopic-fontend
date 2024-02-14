@@ -14,7 +14,7 @@ const store = useIsNavigationOpenStore();
     <v-app-bar-title
       class="text-secondary font-weight-bold text-h5 cursor-pointer"
     >
-      <router-link to="/" class="text-decoration-none text-secondary"
+      <router-link to="/" class="text-decoration-none text-secondary" exact
         ><span>{{ title }}</span></router-link
       >
     </v-app-bar-title>

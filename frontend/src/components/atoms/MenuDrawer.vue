@@ -20,6 +20,7 @@ const store = useIsNavigationOpenStore();
         :value="item.name"
         :to="item.url"
         :prepend-icon="item.icon"
+        exact
       />
     </v-list>
   </v-navigation-drawer>
